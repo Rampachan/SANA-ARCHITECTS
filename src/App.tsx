@@ -10,11 +10,19 @@ import { ContactPage } from './pages/ContactPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { PROJECTS_DATA } from './data/projectsData';
 import { Project } from './types/project';
+import { LogoLoader } from './components/common/LogoLoader';
+import { CustomCursor } from './components/common/CustomCursor';
 
 export function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     const hash = window.location.hash.replace(/^#/, '');
     return hash || '/';
+  });
+
+  // 3-Second Logo Animated Loader on Home Page Access
+  const [showLoader, setShowLoader] = useState<boolean>(() => {
+    const hash = window.location.hash.replace(/^#/, '');
+    return !hash || hash === '/';
   });
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
@@ -63,6 +71,17 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas-light text-studio-black selection:bg-studio-black selection:text-canvas-light">
+      {/* 3-Second Logo Animated Loader on Homepage Access */}
+      {showLoader && (
+        <LogoLoader
+          durationMs={3000}
+          onComplete={() => setShowLoader(false)}
+        />
+      )}
+
+      {/* Architectural Custom Cursor (inspired by knsarchitects.com) */}
+      <CustomCursor />
+
       <Navbar currentPath={currentPath} navigate={navigate} />
 
       <main className="flex-1">

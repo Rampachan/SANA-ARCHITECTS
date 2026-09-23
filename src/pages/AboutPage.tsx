@@ -160,8 +160,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
                 Rasipuram, Namakkal Dt. - 637408
               </p>
             </div>
-
-            
             </div>
           </div>
         </div>

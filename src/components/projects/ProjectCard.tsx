@@ -22,6 +22,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div 
       onClick={() => onSelect(project)}
+      data-cursor="VIEW"
       className="group cursor-pointer flex flex-col space-y-3.5 select-none"
     >
       {/* Image Container */}

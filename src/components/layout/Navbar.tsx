@@ -47,11 +47,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate }) => {
             onClick={() => handleNav('/')}
             className="flex items-center gap-3 text-left group"
           >
-            <div className="w-8 h-8 rounded-sm overflow-hidden flex-shrink-0 bg-studio-black shadow-sm">
+            <div className="w-8 h-8 rounded-sm overflow-hidden flex-shrink-0 flex items-center justify-center p-0.5">
               <img 
-                src="/images/sana-mark.jpg" 
+                src="/images/sana-emblem-clean.png" 
                 alt="SANA Architects Logo Mark" 
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain filter drop-shadow-sm"
                 onError={(e) => {
                   // Fallback to geometric mark if image isn't loaded
                   (e.target as HTMLElement).style.display = 'none';
