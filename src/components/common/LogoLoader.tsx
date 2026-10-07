@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface LogoLoaderProps {
   onComplete: () => void;
-  durationMs?: number; // default 3000ms (3 seconds)
+  durationMs?: number; // default 2000ms for swift, non-blocking intro
 }
 
 export const LogoLoader: React.FC<LogoLoaderProps> = ({ 
   onComplete,
-  durationMs = 3000 
+  durationMs = 2000 
 }) => {
   const [progress, setProgress] = useState(0);
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
+  const onCompleteRef = useRef(onComplete);
+  const hasFinishedRef = useRef(false);
+
+  // Keep latest onComplete callback in ref to prevent effect resets
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   const services = [
     { title: "Architecture & Elevation Design", short: "Architecture" },
@@ -20,16 +27,26 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
     { title: "Turnkey Construction Execution", short: "Execution" }
   ];
 
+  const dismissLoader = () => {
+    if (hasFinishedRef.current) return;
+    hasFinishedRef.current = true;
+    setIsExiting(true);
+    setTimeout(() => {
+      onCompleteRef.current();
+    }, 400); // Swift curtain exit
+  };
+
   useEffect(() => {
     const startTime = performance.now();
     let animId: number;
 
     const updateLoader = (now: number) => {
+      if (hasFinishedRef.current) return;
+
       const elapsed = now - startTime;
       const currentProgress = Math.min(100, Math.floor((elapsed / durationMs) * 100));
       setProgress(currentProgress);
 
-      // Cycle service text based on progress
       const serviceIdx = Math.min(
         services.length - 1,
         Math.floor((currentProgress / 100) * services.length)
@@ -40,26 +57,32 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
         animId = requestAnimationFrame(updateLoader);
       } else {
         setProgress(100);
-        // Begin curtain reveal exit
-        setIsExiting(true);
-        setTimeout(() => {
-          onComplete();
-        }, 750); // Matches slide-up exit duration
+        dismissLoader();
       }
     };
 
     animId = requestAnimationFrame(updateLoader);
 
+    // Hard fallback timeout: guarantees loader dismissal even if rAF is paused/throttled by browser
+    const fallbackTimeout = setTimeout(() => {
+      if (!hasFinishedRef.current) {
+        dismissLoader();
+      }
+    }, durationMs + 250);
+
     return () => {
       if (animId) cancelAnimationFrame(animId);
+      clearTimeout(fallbackTimeout);
     };
-  }, [durationMs, onComplete]);
+  }, [durationMs]);
 
   return (
     <div
-      className={`fixed inset-0 z-[10000] w-full h-[100dvh] flex flex-col justify-between bg-studio-black text-canvas-light transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)] select-none px-4 sm:px-8 py-6 sm:py-10 ${
-        isExiting ? '-translate-y-full opacity-90 pointer-events-none' : 'translate-y-0 opacity-100'
+      onClick={dismissLoader}
+      className={`fixed inset-0 z-[10000] w-full h-[100dvh] flex flex-col justify-between bg-studio-black text-canvas-light transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] select-none px-4 sm:px-8 py-6 sm:py-10 cursor-pointer ${
+        isExiting ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
       }`}
+      title="Click or tap anywhere to enter site"
     >
       {/* Subtle Architectural Grid Lines Overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] sm:opacity-[0.04]">
@@ -76,13 +99,13 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
         </div>
 
         <button
-          onClick={() => {
-            setIsExiting(true);
-            setTimeout(onComplete, 350);
+          onClick={(e) => {
+            e.stopPropagation();
+            dismissLoader();
           }}
-          className="text-[10px] tracking-widest text-canvas-muted hover:text-white transition-colors uppercase border border-white/10 px-3 py-1.5 rounded hover:border-white/30 touch-manipulation min-h-[36px] flex items-center"
+          className="text-[10px] tracking-widest text-canvas-muted hover:text-white transition-colors uppercase border border-white/20 hover:border-white/50 px-3 py-1.5 rounded touch-manipulation min-h-[36px] flex items-center bg-white/5"
         >
-          Skip Intro
+          Skip to Portfolio ✕
         </button>
       </div>
 
@@ -154,7 +177,9 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
       {/* Bottom Progress Bar & Coordinates (Optimized for Mobile screens) */}
       <div className="relative z-10 w-full max-w-2xl mx-auto space-y-2.5 pt-2">
         <div className="flex items-center justify-between text-xs font-mono text-studio-concrete">
-          <span className="tracking-wider text-[11px] sm:text-xs">Loading Studio Archive</span>
+          <span className="tracking-wider text-[11px] sm:text-xs">
+            Tap anywhere to enter • Loading
+          </span>
           <span className="text-white font-semibold text-[11px] sm:text-xs font-mono">{String(progress).padStart(2, '0')}%</span>
         </div>
 

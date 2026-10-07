@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
@@ -19,11 +19,24 @@ export function App() {
     return hash || '/';
   });
 
-  // 3-Second Logo Animated Loader on Home Page Access
+  // Logo Animated Loader: runs once on first session entry, never blocks repeated navigation
   const [showLoader, setShowLoader] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    const hasSeenIntro = sessionStorage.getItem('sana_intro_shown');
+    if (hasSeenIntro) return false;
     const hash = window.location.hash.replace(/^#/, '');
     return !hash || hash === '/';
   });
+
+  const handleLoaderComplete = useCallback(() => {
+    setShowLoader(false);
+    try {
+      sessionStorage.setItem('sana_intro_shown', 'true');
+    } catch {
+      // Ignore storage errors in private modes
+    }
+  }, []);
+
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
     const hash = window.location.hash.replace(/^#/, '');
@@ -71,11 +84,11 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas-light text-studio-black selection:bg-studio-black selection:text-canvas-light">
-      {/* 3-Second Logo Animated Loader on Homepage Access */}
+      {/* Logo Animated Intro on Initial Entry */}
       {showLoader && (
         <LogoLoader
-          durationMs={3000}
-          onComplete={() => setShowLoader(false)}
+          durationMs={2000}
+          onComplete={handleLoaderComplete}
         />
       )}
 
