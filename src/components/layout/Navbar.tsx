@@ -140,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate }) => {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-30 bg-studio-black/95 backdrop-blur-xl flex flex-col justify-between p-8 pt-28 text-canvas-light animate-fade-in md:hidden">
+        <div className="fixed inset-0 z-30 bg-studio-black/95 backdrop-blur-xl flex flex-col justify-between p-6 sm:p-8 pt-24 sm:pt-28 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] text-canvas-light animate-fade-in md:hidden overflow-y-auto overscroll-contain">
           <div className="space-y-6">
             <span className="text-[11px] uppercase tracking-architectural text-canvas-muted block">
               Menu

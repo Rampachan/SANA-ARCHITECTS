@@ -149,6 +149,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
                 Cherry Road, Hasthampatti<br />
                 Salem, Tamil Nadu - 636 007
               </p>
+            </div>
+
             <div className="p-6 rounded bg-studio-dark/70 border border-studio-slate/30 space-y-2">
               <span className="text-[10px] uppercase font-mono tracking-widest text-accent-amber block">
                 Namakkal Office
@@ -159,7 +161,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ navigate }) => {
                 (Opposite Vijayalakshmi Theatre)<br />
                 Rasipuram, Namakkal Dt. - 637408
               </p>
-            </div>
             </div>
           </div>
         </div>

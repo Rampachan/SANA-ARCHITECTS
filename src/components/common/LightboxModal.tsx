@@ -47,12 +47,32 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
     };
   }, [isOpen, handleKeyDown]);
 
+  const touchStartXRef = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartXRef.current - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        onNext();
+      } else {
+        onPrev();
+      }
+    }
+    touchStartXRef.current = null;
+  };
+
   if (!isOpen || images.length === 0) return null;
 
   const currentImage = images[currentIndex];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between select-none animate-fade-in">
+    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col justify-between select-none animate-fade-in pt-[calc(0.5rem+env(safe-area-inset-top,0px))]">
       {/* Top Bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 text-white">
         <div>
@@ -82,7 +102,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
       </div>
 
       {/* Main Image Stage */}
-      <div className="relative flex-1 flex items-center justify-center p-4 sm:p-8 overflow-hidden">
+      <div 
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        className="relative flex-1 flex items-center justify-center p-3 sm:p-8 overflow-hidden touch-pan-y"
+      >
         {images.length > 1 && (
           <button
             onClick={onPrev}
@@ -93,11 +117,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           </button>
         )}
 
-        <div className="max-w-6xl max-h-[82vh] flex items-center justify-center">
+        <div className="max-w-6xl max-h-[75vh] max-h-[75dvh] flex items-center justify-center">
           <img
             src={currentImage}
             alt={title || "Architectural Gallery View"}
-            className="max-w-full max-h-[82vh] object-contain rounded-sm shadow-2xl transition-opacity duration-300"
+            className="max-w-full max-h-[75vh] max-h-[75dvh] object-contain rounded-sm shadow-2xl transition-opacity duration-300"
           />
         </div>
 
@@ -114,7 +138,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
 
       {/* Bottom Thumbnails Strip */}
       {images.length > 1 && (
-        <div className="px-6 py-3 border-t border-white/10 bg-black/50 overflow-x-auto flex items-center justify-center gap-2">
+        <div className="px-4 sm:px-6 py-3 border-t border-white/10 bg-black/50 overflow-x-auto flex items-center justify-start sm:justify-center gap-2 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]">
           {images.map((img, idx) => (
             <button
               key={idx}

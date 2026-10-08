@@ -88,7 +88,7 @@ export const StudioVignette: React.FC<StudioVignetteProps> = ({ onLearnMore }) =
             </div>
 
             {/* Overlapping Secondary Card */}
-            <div className="hidden sm:block absolute -bottom-8 -left-8 z-20 w-48 aspect-video rounded-sm overflow-hidden shadow-xl border-2 border-white bg-studio-black">
+            <div className="hidden sm:block absolute sm:-bottom-6 sm:-left-3 md:-bottom-8 md:-left-6 lg:-bottom-8 lg:-left-8 z-20 w-44 sm:w-48 aspect-video rounded-sm overflow-hidden shadow-xl border-2 border-white bg-studio-black">
               <img
                 src="/images/projects/page_066.jpg"
                 alt="Rasipuram Twilight Villa"

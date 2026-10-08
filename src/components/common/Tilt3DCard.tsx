@@ -72,7 +72,11 @@ export const Tilt3DCard: React.FC<Tilt3DCardProps> = ({
       className={`relative transition-transform duration-300 ease-out preserve-3d ${className}`}
       style={{
         perspective: `${perspective}px`,
+        WebkitPerspective: `${perspective}px`,
         transform: `perspective(${perspective}px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        WebkitTransform: `perspective(${perspective}px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`,
+        transformStyle: 'preserve-3d',
+        WebkitTransformStyle: 'preserve-3d',
         willChange: 'transform',
       }}
     >

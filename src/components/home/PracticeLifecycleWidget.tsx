@@ -155,6 +155,8 @@ export const PracticeLifecycleWidget: React.FC<PracticeLifecycleWidgetProps> = (
                 key={stage.number}
                 onClick={() => selectStage(idx)}
                 className={`relative p-3.5 sm:p-4 rounded text-left transition-all duration-300 border ${
+                  idx === STAGES.length - 1 ? 'col-span-2 sm:col-span-1' : ''
+                } ${
                   isActive
                     ? 'bg-white/10 border-accent-amber shadow-lg shadow-accent-amber/10'
                     : isPast

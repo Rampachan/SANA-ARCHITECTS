@@ -7,10 +7,25 @@
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     color: #111111;
     background-color: #FAF9F5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
   
   body {
     overflow-x: hidden;
+    overflow-x: clip;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  /* Prevent automatic iOS Safari zoom-in when tapping form inputs */
+  @media screen and (max-width: 767px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
   }
 }
 
@@ -76,19 +91,41 @@
 }
 
 .perspective-1000 {
+  -webkit-perspective: 1000px;
   perspective: 1000px;
 }
 
 .perspective-1500 {
+  -webkit-perspective: 1500px;
   perspective: 1500px;
 }
 
 .preserve-3d {
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
 .backface-hidden {
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+/* Touch action helpers */
+.touch-pan-y {
+  touch-action: pan-y;
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Safe area padding utilities for modern iOS notches & dynamic island */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* Reduced motion accessibility */

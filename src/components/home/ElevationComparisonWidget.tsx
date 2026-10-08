@@ -61,7 +61,20 @@ export const ElevationComparisonWidget: React.FC = () => {
   const [selectedPairIndex, setSelectedPairIndex] = useState(0);
   const [sliderPosition, setSliderPosition] = useState(50); // percentage 0 - 100
   const [isInteracting, setIsInteracting] = useState(false);
+  const [containerWidth, setContainerWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track container width accurately across device rotations & resize
+  useEffect(() => {
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   // Automated gentle breathing scan when idle
   useEffect(() => {
@@ -160,7 +173,8 @@ export const ElevationComparisonWidget: React.FC = () => {
             onTouchStart={() => setIsInteracting(true)}
             onTouchEnd={handleMouseUp}
             onTouchMove={handleTouchMove}
-            className="relative w-full aspect-[16/10] sm:aspect-[21/9] min-h-[380px] max-h-[640px] rounded-sm overflow-hidden border border-canvas-stone/80 shadow-2xl select-none cursor-ew-resize group bg-studio-charcoal"
+            className="relative w-full aspect-[16/10] sm:aspect-[21/9] min-h-[260px] sm:min-h-[340px] md:min-h-[380px] max-h-[640px] rounded-sm overflow-hidden border border-canvas-stone/80 shadow-2xl select-none cursor-ew-resize group bg-studio-charcoal touch-pan-y"
+            style={{ touchAction: 'pan-y' }}
           >
             {/* Layer A (Right Base): Physical Completed Execution */}
             <div className="absolute inset-0 w-full h-full">
@@ -189,7 +203,7 @@ export const ElevationComparisonWidget: React.FC = () => {
                 alt={currentPair.renderLabel}
                 className="absolute inset-0 w-full h-full object-cover object-center max-w-none"
                 style={{
-                  width: containerRef.current ? `${containerRef.current.clientWidth}px` : '100%',
+                  width: containerWidth > 0 ? `${containerWidth}px` : '100%',
                 }}
               />
               {/* Left Tag */}

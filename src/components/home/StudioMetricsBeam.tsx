@@ -137,7 +137,7 @@ export const StudioMetricsBeam: React.FC = () => {
             return (
               <div
                 key={metric.id}
-                className="group relative p-8 rounded-sm bg-studio-charcoal/80 border border-white/10 backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-accent-amber/50 hover:shadow-2xl hover:shadow-accent-amber/10 hover:-translate-y-1"
+                className="group relative p-6 sm:p-8 rounded-sm bg-studio-charcoal/80 border border-white/10 backdrop-blur-md overflow-hidden transition-all duration-500 hover:border-accent-amber/50 hover:shadow-2xl hover:shadow-accent-amber/10 hover:-translate-y-1"
               >
                 {/* Luminous Warm Backlight Glow on Hover */}
                 <div className="absolute -inset-1 rounded-[inherit] bg-gradient-to-r from-accent-terracotta/20 to-accent-amber/20 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 pointer-events-none" />

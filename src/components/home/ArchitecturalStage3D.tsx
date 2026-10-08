@@ -132,11 +132,33 @@ export const ArchitecturalStage3D: React.FC<ArchitecturalStage3DProps> = ({
   };
 
   const currentScene = STAGE_SCENES[currentIndex];
+  const touchStartXRef = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartXRef.current - touchEndX;
+    // Swipe threshold 40px
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        triggerNext();
+      } else {
+        triggerPrev();
+      }
+    }
+    touchStartXRef.current = null;
+  };
 
   return (
     <section 
       ref={stageRef}
-      className="relative w-full h-screen min-h-[680px] flex flex-col justify-between overflow-hidden bg-studio-black text-white select-none"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      className="relative w-full h-screen h-[100dvh] min-h-[580px] sm:min-h-[660px] flex flex-col justify-between overflow-hidden bg-studio-black text-white select-none touch-manipulation"
     >
       {/* Plane 1: Dynamic 3D Layered Background Render */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -170,7 +192,7 @@ export const ArchitecturalStage3D: React.FC<ArchitecturalStage3DProps> = ({
       </div>
 
       {/* Plane 2: Top Floating Coordinates & Studio Bar */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-28 sm:pt-32 flex items-center justify-between text-xs tracking-architectural uppercase">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 sm:pt-32 pt-[calc(5rem+env(safe-area-inset-top,0px))] flex items-center justify-between text-xs tracking-architectural uppercase">
         <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15">
           <span className="w-2 h-2 rounded-full bg-accent-amber animate-ping flex-shrink-0" />
           <span className="text-[11px] text-canvas-light font-mono">
@@ -233,7 +255,7 @@ export const ArchitecturalStage3D: React.FC<ArchitecturalStage3DProps> = ({
       </div>
 
       {/* Plane 4: Bottom Kinetic Progress Navigation & Controls */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-10 sm:pb-12">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-6 sm:pb-12 pb-[calc(1.5rem+env(safe-area-inset-bottom,0px))]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-white/10">
           {/* Segmented Stage Steps (01 through 05) */}
           <div className="flex items-center gap-2 sm:gap-3">
