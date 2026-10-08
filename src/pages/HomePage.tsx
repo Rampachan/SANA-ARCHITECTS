@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArchitecturalStage3D } from '../components/home/ArchitecturalStage3D';
+import { HeroSection } from '../components/home/HeroSection';
 import { FeaturedWorks } from '../components/home/FeaturedWorks';
 import { ElevationComparisonWidget } from '../components/home/ElevationComparisonWidget';
 import { PracticeLifecycleWidget } from '../components/home/PracticeLifecycleWidget';
@@ -19,26 +19,15 @@ export const HomePage: React.FC<HomePageProps> = ({
   onSelectProject,
   navigate,
 }) => {
-  const handleSelectProjectId = (projectId: string) => {
-    const found = projects.find((p) => p.id === projectId);
-    if (found) {
-      onSelectProject(found);
-    } else {
-      const el = document.getElementById('selected-works');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div className="space-y-0">
-      {/* 1. Automated 3D Multi-Plane Elevation Showcase (Hero Stage) */}
-      <ArchitecturalStage3D
+      {/* 1. Monumental Architectural Hero Stage (SANA ARCHITECTS + Ethos & Le Corbusier Quote) */}
+      <HeroSection
         onExplore={() => {
           const el = document.getElementById('selected-works');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
         onContact={() => navigate('/contact')}
-        onSelectProject={handleSelectProjectId}
       />
 
       {/* 2. Kinetic Studio Scale & Archive Metrics Beam */}
