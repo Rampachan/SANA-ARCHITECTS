@@ -1,5 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 
+interface ServiceItem {
+  title: string;
+  short: string;
+}
+
+const SERVICES: ServiceItem[] = [
+  { title: "Architecture & Elevation Design", short: "Architecture" },
+  { title: "3D Architectural Visualization", short: "3D Visuals" },
+  { title: "Interior Architecture & Joinery", short: "Interiors" },
+  { title: "Turnkey Construction Execution", short: "Execution" }
+];
+
 interface LogoLoaderProps {
   onComplete: () => void;
   durationMs?: number; // default 2000ms for swift, non-blocking intro
@@ -20,13 +32,6 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
-  const services = [
-    { title: "Architecture & Elevation Design", short: "Architecture" },
-    { title: "3D Architectural Visualization", short: "3D Visuals" },
-    { title: "Interior Architecture & Joinery", short: "Interiors" },
-    { title: "Turnkey Construction Execution", short: "Execution" }
-  ];
-
   const dismissLoader = () => {
     if (hasFinishedRef.current) return;
     hasFinishedRef.current = true;
@@ -43,13 +48,17 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
     const updateLoader = (now: number) => {
       if (hasFinishedRef.current) return;
 
-      const elapsed = now - startTime;
-      const currentProgress = Math.min(100, Math.floor((elapsed / durationMs) * 100));
+      // Ensure elapsed is never negative due to clock drift/navigation timing
+      const elapsed = Math.max(0, now - startTime);
+      const currentProgress = Math.max(0, Math.min(100, Math.floor((elapsed / durationMs) * 100)));
       setProgress(currentProgress);
 
-      const serviceIdx = Math.min(
-        services.length - 1,
-        Math.floor((currentProgress / 100) * services.length)
+      const serviceIdx = Math.max(
+        0,
+        Math.min(
+          SERVICES.length - 1,
+          Math.floor((currentProgress / 100) * SERVICES.length)
+        )
       );
       setActiveServiceIndex(serviceIdx);
 
@@ -136,21 +145,28 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
         </div>
 
         {/* Dynamic Service Highlight Badge */}
-        <div className="min-h-[44px] flex items-center justify-center px-2 w-full max-w-md mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md max-w-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-amber animate-ping flex-shrink-0" />
-            <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-canvas-light truncate">
-              {services[activeServiceIndex].title}
-            </span>
-          </div>
-        </div>
+        {(() => {
+          const safeIdx = Math.max(0, Math.min(SERVICES.length - 1, activeServiceIndex));
+          const activeService = SERVICES[safeIdx] || SERVICES[0];
+          return (
+            <div className="min-h-[44px] flex items-center justify-center px-2 w-full max-w-md mx-auto">
+              <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md max-w-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent-amber animate-ping flex-shrink-0" />
+                <span className="text-[11px] sm:text-xs font-mono uppercase tracking-widest text-canvas-light truncate">
+                  {activeService.title}
+                </span>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* 4 Segmented Architectural Progress Steps (Mobile & Desktop) */}
         <div className="mt-5 w-full max-w-xs sm:max-w-md mx-auto px-4">
           <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
-            {services.map((srv, idx) => {
-              const isPastOrCurrent = idx <= activeServiceIndex;
-              const isCurrent = idx === activeServiceIndex;
+            {SERVICES.map((srv, idx) => {
+              const safeIdx = Math.max(0, Math.min(SERVICES.length - 1, activeServiceIndex));
+              const isPastOrCurrent = idx <= safeIdx;
+              const isCurrent = idx === safeIdx;
               return (
                 <div key={idx} className="flex flex-col items-center gap-1">
                   <div 

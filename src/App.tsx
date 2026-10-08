@@ -22,8 +22,12 @@ export function App() {
   // Logo Animated Loader: runs once on first session entry, never blocks repeated navigation
   const [showLoader, setShowLoader] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
-    const hasSeenIntro = sessionStorage.getItem('sana_intro_shown');
-    if (hasSeenIntro) return false;
+    try {
+      const hasSeenIntro = sessionStorage.getItem('sana_intro_shown');
+      if (hasSeenIntro) return false;
+    } catch {
+      return false;
+    }
     const hash = window.location.hash.replace(/^#/, '');
     return !hash || hash === '/';
   });
@@ -36,6 +40,17 @@ export function App() {
       // Ignore storage errors in private modes
     }
   }, []);
+
+  // Set session marker as soon as loader mounts so browser refresh never gets trapped
+  useEffect(() => {
+    if (showLoader) {
+      try {
+        sessionStorage.setItem('sana_intro_shown', 'true');
+      } catch {
+        // Ignore
+      }
+    }
+  }, [showLoader]);
 
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(() => {

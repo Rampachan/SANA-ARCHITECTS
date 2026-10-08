@@ -106,7 +106,7 @@ export const PracticeLifecycleWidget: React.FC<PracticeLifecycleWidgetProps> = (
     setProgress(0);
   };
 
-  const activeStage = STAGES[activeStageIndex];
+  const activeStage = STAGES[activeStageIndex] || STAGES[0];
   const IconComponent = activeStage.icon;
 
   return (

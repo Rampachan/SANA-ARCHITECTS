@@ -21,8 +21,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
   // Calculate Next & Prev projects
   const currentIndex = allProjects.findIndex(p => p.id === project.id);
-  const prevProject = currentIndex > 0 ? allProjects[currentIndex - 1] : allProjects[allProjects.length - 1];
-  const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : allProjects[0];
+  const prevProject = (currentIndex > 0 ? allProjects[currentIndex - 1] : allProjects[allProjects.length - 1]) || project;
+  const nextProject = (currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : allProjects[0]) || project;
 
   const handleOpenLightbox = (index: number) => {
     setLightboxIndex(index);

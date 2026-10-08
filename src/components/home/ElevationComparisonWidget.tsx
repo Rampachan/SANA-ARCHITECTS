@@ -125,7 +125,7 @@ export const ElevationComparisonWidget: React.FC = () => {
     }
   };
 
-  const currentPair = COMPARISON_PAIRS[selectedPairIndex];
+  const currentPair = COMPARISON_PAIRS[selectedPairIndex] || COMPARISON_PAIRS[0];
 
   return (
     <section className="py-24 sm:py-32 bg-canvas-light text-studio-black relative overflow-hidden">
@@ -157,7 +157,7 @@ export const ElevationComparisonWidget: React.FC = () => {
                     : 'bg-canvas-stone/50 text-studio-concrete hover:bg-canvas-stone hover:text-studio-black'
                 }`}
               >
-                0{idx + 1} {pair.title.split(' ')[0]}
+                0{idx + 1} {(pair.title || '').split(' ')[0]}
               </button>
             ))}
           </div>

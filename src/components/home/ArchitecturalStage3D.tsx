@@ -131,7 +131,7 @@ export const ArchitecturalStage3D: React.FC<ArchitecturalStage3DProps> = ({
     }, 300);
   };
 
-  const currentScene = STAGE_SCENES[currentIndex];
+  const currentScene = STAGE_SCENES[currentIndex] || STAGE_SCENES[0];
   const touchStartXRef = useRef<number | null>(null);
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -274,7 +274,7 @@ export const ArchitecturalStage3D: React.FC<ArchitecturalStage3DProps> = ({
                       0{idx + 1}
                     </span>
                     <span className="hidden md:inline uppercase text-[9px] tracking-wider text-canvas-muted truncate max-w-[120px]">
-                      {scene.title.split(' ')[0]}
+                      {(scene?.title || '').split(' ')[0]}
                     </span>
                   </div>
 
