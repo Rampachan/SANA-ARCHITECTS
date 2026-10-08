@@ -23,6 +23,10 @@ export function App() {
   const [showLoader, setShowLoader] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     try {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('intro') === 'true' || urlParams.get('intro') === '1') {
+        return true;
+      }
       const hasSeenIntro = sessionStorage.getItem('sana_intro_shown');
       if (hasSeenIntro) return false;
     } catch {
@@ -40,17 +44,6 @@ export function App() {
       // Ignore storage errors in private modes
     }
   }, []);
-
-  // Set session marker as soon as loader mounts so browser refresh never gets trapped
-  useEffect(() => {
-    if (showLoader) {
-      try {
-        sessionStorage.setItem('sana_intro_shown', 'true');
-      } catch {
-        // Ignore
-      }
-    }
-  }, [showLoader]);
 
 
   const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
@@ -102,7 +95,7 @@ export function App() {
       {/* Logo Animated Intro on Initial Entry */}
       {showLoader && (
         <LogoLoader
-          durationMs={2000}
+          durationMs={2600}
           onComplete={handleLoaderComplete}
         />
       )}
