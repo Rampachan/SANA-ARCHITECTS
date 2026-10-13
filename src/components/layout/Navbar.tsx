@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, navigate }) => {
               />
             </div>
             <div>
-              <span className={`block font-sans font-bold text-sm tracking-architectural uppercase transition-colors ${
+              <span className={`block font-playfair font-bold text-sm tracking-architectural uppercase transition-colors ${
                 isScrolled ? 'text-studio-black group-hover:text-accent-terracotta' : 'text-white group-hover:text-canvas-muted'
               }`}>
                 SANA ARCHITECTS

@@ -8,10 +8,8 @@ interface ComparisonPair {
   description: string;
   renderImage: string;
   renderLabel: string;
-  renderRef: string;
   siteImage: string;
   siteLabel: string;
-  siteRef: string;
   annotations: string[];
 }
 
@@ -23,10 +21,8 @@ const COMPARISON_PAIRS: ComparisonPair[] = [
     description: 'Direct comparison between the photorealistic twilight 3D digital elevation study and the actual completed physical execution featuring the handcrafted Buddha stone water wall.',
     renderImage: '/images/projects/page_066.jpg',
     renderLabel: '3D Elevation Simulation',
-    renderRef: 'PDF Page 66',
     siteImage: '/images/projects/page_083.jpg',
     siteLabel: 'Completed Site Execution',
-    siteRef: 'PDF Page 83',
     annotations: ['Stone Cladding Alignment', 'Photometric Night Lighting', 'Natural Water Feature Integration']
   },
   {
@@ -36,10 +32,8 @@ const COMPARISON_PAIRS: ComparisonPair[] = [
     description: 'Sculptural wire-cut brick pylon with circular aperture window and horizontal privacy louvers modeled in 3D and translated into detailed execution drawings.',
     renderImage: '/images/projects/page_002.jpg',
     renderLabel: '3D Digital Elevation',
-    renderRef: 'PDF Page 02',
     siteImage: '/images/projects/page_063.jpg',
     siteLabel: 'Architectural Massing Study',
-    siteRef: 'PDF Page 63',
     annotations: ['Circular Breeze Aperture', 'Exposed Wire-Cut Brickwork', 'Upper Terrace Pergola Framing']
   },
   {
@@ -49,10 +43,8 @@ const COMPARISON_PAIRS: ComparisonPair[] = [
     description: 'Digital volumetric modeling compared against the real physical luxury villa handover with tactile charcoal feature walls and cantilevered floating timber stairs.',
     renderImage: '/images/projects/page_005.jpg',
     renderLabel: '3D Volumetric Study',
-    renderRef: 'PDF Page 05',
     siteImage: '/images/projects/page_115.jpg',
     siteLabel: 'Completed Villa Handover',
-    siteRef: 'PDF Page 115',
     annotations: ['Tactile Charcoal Feature Wall', 'Floating Open-Riser Staircase', 'Full-Height Glass Portals']
   }
 ];
@@ -188,7 +180,6 @@ export const ElevationComparisonWidget: React.FC = () => {
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-studio-black/85 text-emerald-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider backdrop-blur-md border border-emerald-500/20 shadow-lg">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>{currentPair.siteLabel}</span>
-                  <span className="text-canvas-muted text-[9px] opacity-70">({currentPair.siteRef})</span>
                 </span>
               </div>
             </div>
@@ -211,7 +202,6 @@ export const ElevationComparisonWidget: React.FC = () => {
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-studio-black/85 text-accent-amber text-[10px] sm:text-xs font-mono uppercase tracking-wider backdrop-blur-md border border-accent-amber/30 shadow-lg">
                   <Layers className="w-3.5 h-3.5" />
                   <span>{currentPair.renderLabel}</span>
-                  <span className="text-canvas-muted text-[9px] opacity-70">({currentPair.renderRef})</span>
                 </span>
               </div>
             </div>

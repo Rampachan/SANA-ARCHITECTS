@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="min-h-screen flex items-center justify-center bg-studio-black text-canvas-light p-6 text-center">
           <div className="max-w-md space-y-4">
-            <h2 className="text-xl font-bold uppercase tracking-architectural">SANA ARCHITECTS</h2>
+            <h2 className="text-xl font-playfair font-bold uppercase tracking-architectural">SANA ARCHITECTS</h2>
             <p className="text-xs text-canvas-muted">Unable to display this view. Tap to reload.</p>
             <button
               onClick={() => {

@@ -89,11 +89,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        <div className="flex-shrink-0 mt-1">
-          <span className="text-[10px] uppercase font-mono tracking-wider text-studio-concrete/80 border border-canvas-stone px-2 py-0.5 rounded">
-            {project.sourcePages?.split(',')[0] || 'PDF'}
-          </span>
-        </div>
+        {project.year && (
+          <div className="flex-shrink-0 mt-1">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-studio-concrete/80 border border-canvas-stone px-2 py-0.5 rounded">
+              {project.year}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

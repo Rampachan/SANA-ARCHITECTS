@@ -9,7 +9,6 @@ interface LifecycleStage {
   description: string;
   deliverables: string[];
   image: string;
-  pageRef: string;
   icon: React.ElementType;
 }
 
@@ -22,7 +21,6 @@ const STAGES: LifecycleStage[] = [
     description: 'Detailed on-site analysis of plot orientation, wind corridors, soil contours, and regulatory zoning in Rasipuram, Salem, and Tamil Nadu.',
     deliverables: ['Solar Path & Thermal Analysis', 'Volumetric Massing Footprint', 'Municipal Setback Coordination'],
     image: '/images/projects/page_006.jpg',
-    pageRef: 'PDF Page 06',
     icon: Compass,
   },
   {
@@ -33,7 +31,6 @@ const STAGES: LifecycleStage[] = [
     description: 'Translating spatial requirements into sculpted 3D architectural elevations, exploring rough-cut stone pylons, brick louvers, and cantilevered volumes.',
     deliverables: ['Digital 3D Architectural Model', 'Tactile Materiality Palettes', 'Perforated Breeze Screen Layouts'],
     image: '/images/projects/page_022.jpg',
-    pageRef: 'PDF Page 22',
     icon: Box,
   },
   {
@@ -44,7 +41,6 @@ const STAGES: LifecycleStage[] = [
     description: 'Calculating natural tropical sun angles alongside warm recessed LED cove illumination to visualize the building across day and night.',
     deliverables: ['4K Photometric Day & Night Renders', 'Glazing Glare Mitigation Studies', 'Architectural Twilight Illuminations'],
     image: '/images/projects/page_009.jpg',
-    pageRef: 'PDF Page 09',
     icon: SunMedium,
   },
   {
@@ -55,7 +51,6 @@ const STAGES: LifecycleStage[] = [
     description: 'Developing complete construction-ready documentation including structural details, electrical & plumbing schematics, and custom joinery cabinetry.',
     deliverables: ['Good-For-Construction (GFC) Sheets', 'Bespoke Wardrobe & Kitchen Details', 'Structural Steel & RCC Coordinates'],
     image: '/images/projects/page_035.jpg',
-    pageRef: 'PDF Page 35',
     icon: FileText,
   },
   {
@@ -66,7 +61,6 @@ const STAGES: LifecycleStage[] = [
     description: 'Direct field oversight ensuring physical masonry, stone cladding, waterfall installations, and finishes match the approved 3D elevation down to the millimeter.',
     deliverables: ['Rasipuram & Salem Field Supervision', 'Material Quality Verification', 'Snag-Free Physical Turnkey Handover'],
     image: '/images/projects/page_083.jpg',
-    pageRef: 'PDF Page 83',
     icon: HardHat,
   },
 ];
@@ -268,7 +262,7 @@ export const PracticeLifecycleWidget: React.FC<PracticeLifecycleWidgetProps> = (
                   SANA Architecture Archive
                 </span>
                 <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded border border-white/10 text-[10px] text-accent-amber font-semibold">
-                  {activeStage.pageRef}
+                  Stage {activeStage.number} • {activeStage.category}
                 </span>
               </div>
             </div>

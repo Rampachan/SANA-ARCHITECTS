@@ -47,24 +47,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Center Stage: Monumental Heading, Slogan & Le Corbusier Quote in Distinct Fonts */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center my-auto py-8 sm:py-12 max-w-4xl mx-auto">
-        {/* 1. Main Heading in Font 1: Cinzel (Architectural Monumental Capitals) */}
-        <h1 className="font-cinzel text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.2em] sm:tracking-[0.28em] md:tracking-[0.32em] uppercase text-white leading-tight drop-shadow-2xl select-none">
+        {/* 1. Main Brand Heading in Playfair Display font */}
+        <h1 className="font-playfair text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.14em] sm:tracking-[0.2em] md:tracking-[0.24em] uppercase text-white leading-tight drop-shadow-2xl select-none">
           SANA ARCHITECTS
         </h1>
 
-        {/* 2. Brand Slogan in Font 2: Playfair Display (Warm, Flowing Editorial Serif) */}
-        <p className="font-serif italic text-lg xs:text-xl sm:text-2xl md:text-3xl text-canvas-light font-normal tracking-wide max-w-3xl mx-auto leading-relaxed mt-4 sm:mt-6 drop-shadow-md text-neutral-100">
+        {/* 2. Brand Slogan in Font 2: Cormorant Garamond (Poetic, Warm Italic) */}
+        <p className="font-cormorant italic text-xl xs:text-2xl sm:text-3xl md:text-4xl text-neutral-100 font-normal tracking-wide max-w-3xl mx-auto leading-relaxed mt-4 sm:mt-6 drop-shadow-md">
           “Spaces Designed for the Way Life Unfolds.”
         </p>
 
-        {/* 3. Architectural Philosophical Quote in Font 3: Cormorant Garamond + JetBrains Mono */}
+        {/* 3. Architectural Philosophical Quote in Font 3: Plus Jakarta Sans / JetBrains Mono */}
         <blockquote className="mt-8 sm:mt-12 max-w-2xl mx-auto pt-6 sm:pt-8 border-t border-white/20 relative">
           {/* Subtle Center Emblem Accent */}
           <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-studio-black border border-white/20 rounded-full text-accent-amber text-[10px] font-mono tracking-widest uppercase">
             Ethos
           </div>
 
-          <p className="font-cormorant italic text-lg sm:text-2xl md:text-[26px] text-neutral-300 font-light leading-relaxed drop-shadow-sm">
+          <p className="font-sans font-light italic text-base sm:text-xl md:text-2xl text-neutral-300 leading-relaxed drop-shadow-sm">
             “Architecture is the masterly, correct and magnificent play of volumes assembled in light.”
           </p>
           <cite className="block mt-3.5 sm:mt-4 not-italic font-mono text-xs sm:text-sm uppercase tracking-[0.25em] text-accent-amber font-semibold">

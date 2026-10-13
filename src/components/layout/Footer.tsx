@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
               <span className="text-[11px] tracking-architectural uppercase text-canvas-muted block">
                 Studio Practice
               </span>
-              <h2 className="text-2xl sm:text-3xl font-sans font-bold tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl font-playfair font-bold tracking-tight text-white">
                 SANA ARCHITECTS
               </h2>
               <p className="text-xs uppercase tracking-editorial text-studio-concrete">

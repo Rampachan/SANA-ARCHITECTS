@@ -10,7 +10,6 @@ interface StageScene {
   slogan: string;
   description: string;
   image: string;
-  pageCitation: string;
 }
 
 const STAGE_SCENES: StageScene[] = [
@@ -22,7 +21,6 @@ const STAGE_SCENES: StageScene[] = [
     slogan: 'Where Contours & Geometry Converge',
     description: 'Rough-cut vertical stone pylons paired with dual geometric jali privacy balconies and photometric night uplighting.',
     image: '/images/projects/page_022.jpg',
-    pageCitation: 'PDF Page 22'
   },
   {
     id: 'chengam-residence',
@@ -32,7 +30,6 @@ const STAGE_SCENES: StageScene[] = [
     slogan: 'Exposed Brick & Circular Apertures',
     description: 'Wire-cut exposed brick pylon featuring circular breeze apertures, horizontal aluminium louvers, and shaded upper pergolas.',
     image: '/images/projects/page_002.jpg',
-    pageCitation: 'PDF Page 02'
   },
   {
     id: 'oviya-jewellers',
@@ -42,7 +39,6 @@ const STAGE_SCENES: StageScene[] = [
     slogan: 'Curved Marble & Gilded Vaults',
     description: 'Bespoke retail architecture featuring carved gold ceiling motifs, curved Italian marble reception, and recessed diamond showcases.',
     image: '/images/projects/page_012.jpg',
-    pageCitation: 'PDF Page 12'
   },
   {
     id: 'rasipuram-site-execution',
@@ -52,7 +48,6 @@ const STAGE_SCENES: StageScene[] = [
     slogan: 'From 3D Simulation to Realized Reality',
     description: 'Real site handover featuring handcrafted Buddha stone waterfall, double-height chandelier hall, and cantilevered timber stair.',
     image: '/images/projects/page_083.jpg',
-    pageCitation: 'PDF Page 83'
   },
   {
     id: 'kovalam-coastal-residence',
@@ -62,7 +57,6 @@ const STAGE_SCENES: StageScene[] = [
     slogan: 'Tactile Charcoal & Floating Volumes',
     description: 'Completed contemporary coastal villa with floating open-riser timber staircase, tactile slatted dividers, and expansive glass portals.',
     image: '/images/projects/page_115.jpg',
-    pageCitation: 'PDF Page 115'
   }
 ];
 
@@ -202,8 +196,6 @@ export const ArchitecturalStage3D: React.FC<ArchitecturalStage3DProps> = ({
 
         <div className="hidden sm:flex items-center gap-4 text-[11px] font-mono text-canvas-muted/80">
           <span>11.4582° N, 78.1746° E</span>
-          <span className="opacity-30">•</span>
-          <span className="text-white/90">{currentScene.pageCitation}</span>
         </div>
       </div>
 

@@ -42,7 +42,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         </button>
 
         <div className="flex items-center gap-4 text-xs font-mono text-studio-concrete">
-          <span>{project.sourcePages || 'Verified PDF Project'}</span>
+          <span>{project.category}</span>
           <span>•</span>
           <span>{project.gallery.length} Images</span>
         </div>
@@ -146,10 +146,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
             </div>
 
-            {/* Source Page Citation */}
+            {/* Project Commission Details */}
             <div className="p-4 bg-canvas-off rounded border border-canvas-stone text-xs text-studio-concrete flex items-center justify-between">
-              <span>Primary Source: SANA Architects Portfolio</span>
-              <span className="font-mono font-medium text-studio-black">{project.sourcePages}</span>
+              <span>Architectural Commission</span>
+              <span className="font-mono font-medium text-studio-black">{project.year || 'SANA Architects'}</span>
             </div>
           </div>
         </div>

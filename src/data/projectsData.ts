@@ -15,7 +15,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["3D Elevation Design", "Exterior Lighting Scheme", "Stone Cladding Detail", "Jaali Screen Fabrication"],
-    sourcePages: "PDF Pages 22, 62"
   },
   {
     id: "oviya-jewellers",
@@ -39,7 +38,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["Commercial Facade", "Luxury Showroom Interior", "Custom Ornate Ceilings", "Display Counter Joinery"],
-    sourcePages: "PDF Pages 12–21"
   },
   {
     id: "chengam-residence",
@@ -58,7 +56,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["3D Elevation Design", "Brickwork Detailing", "Pergola Shading", "Entry Gate Integration"],
-    sourcePages: "PDF Pages 2–3, 23, 34, 63"
   },
   {
     id: "oviya-boutique",
@@ -82,7 +79,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["Retail Space Planning", "Terrazzo Flooring Layout", "Arched Display Niches", "Bespoke Cash Counter"],
-    sourcePages: "PDF Pages 24–33"
   },
   {
     id: "ranjith-residence-interiors",
@@ -106,7 +102,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["Living Room TV Paneling", "Modular Kitchen & Breakfast Bar", "Master Suite Joinery", "Traditional Teak Pooja Room"],
-    sourcePages: "PDF Pages 35–44"
   },
   {
     id: "uttarakhand-multi-tier",
@@ -124,7 +119,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["Multi-Level Elevation", "CNC Metal Jaali Screen", "Twilight Lighting Study", "Rooftop Pergola Deck"],
-    sourcePages: "PDF Pages 9–11, 45"
   },
   {
     id: "rasipuram-site-execution",
@@ -165,7 +159,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["Turnkey Construction Oversight", "Water Wall Masonry", "Custom Staircase Fabrication", "Interior Joinery Execution"],
-    sourcePages: "PDF Pages 83–114",
     isExecuted: true
   },
   {
@@ -195,7 +188,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     scope: ["Split-face Stone Feature Wall", "Cantilever Open Staircase", "Slatted Privacy Screen", "Custom Modular Wardrobes"],
-    sourcePages: "PDF Pages 115–129",
     isExecuted: true
   },
   {
@@ -212,7 +204,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Elevation Design", "Cantilever Engineering", "Planter Integration"],
-    sourcePages: "PDF Pages 5, 61"
   },
   {
     id: "bangalore-duplex",
@@ -229,7 +220,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Brickwork Elevation", "Ganesha Relief Motif", "Breeze Block Boundary"],
-    sourcePages: "PDF Pages 6, 65, 70"
   },
   {
     id: "tiruvannamalai-jali-residence",
@@ -245,7 +235,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Clay Jaali Balcony", "Terrace Swing Corner", "Corner Window Slit"],
-    sourcePages: "PDF Pages 7, 8"
   },
   {
     id: "uttarakhand-interiors",
@@ -271,7 +260,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Wicker Wardrobe Shutter Joinery", "Textured Stone Living Wall", "Sage Kitchen Modular Design"],
-    sourcePages: "PDF Pages 46–57"
   },
   {
     id: "blue-portal-residence",
@@ -287,7 +275,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Mosaic Cladding", "Steel V-Strut Pergola", "Evening Lighting Scheme"],
-    sourcePages: "PDF Pages 58, 59"
   },
   {
     id: "bangalore-heritage-courtyard",
@@ -310,7 +297,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Zen Garden & Water Feature", "Rustic Brick Kitchen", "Carved Teak Mandapam"],
-    sourcePages: "PDF Pages 71–79"
   },
   {
     id: "coimbatore-contemporary-villa",
@@ -325,7 +311,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["3D Elevation Visualization", "Slate Cladding Detail", "Wood Screen Louvers"],
-    sourcePages: "PDF Page 69"
   },
   {
     id: "rasipuram-twilight-villa",
@@ -340,7 +325,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["3D Elevation Design", "Exterior Lighting Study", "Minimalist Portico"],
-    sourcePages: "PDF Page 66"
   },
   {
     id: "tambaram-residence",
@@ -356,7 +340,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Facade Color Scheme", "3D Visualization", "Compound Wall Gate Design"],
-    sourcePages: "PDF Pages 67, 68"
   },
   {
     id: "horizontal-villa-007",
@@ -371,7 +354,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Wide Frontage Elevation", "Terrace Garden Planters", "Perforated Screen Wall"],
-    sourcePages: "PDF Page 64"
   },
   {
     id: "urban-living-complex",
@@ -386,7 +368,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Multi-Story Elevation", "Stilt Parking Planning", "Balcony Cantilevers"],
-    sourcePages: "PDF Page 60"
   },
   {
     id: "gb-commercial-complex",
@@ -401,7 +382,6 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Commercial Facade Design", "Signage & Brand Pylons", "Storefront Glazing"],
-    sourcePages: "PDF Page 81"
   },
   {
     id: "boutique-hotel-suites",
@@ -416,6 +396,5 @@ export const PROJECTS_DATA: Project[] = [
     ],
     featured: false,
     scope: ["Hospitality Facade", "Sun Shading Louvers", "Landscape Perimeter"],
-    sourcePages: "PDF Page 80"
   }
 ];
