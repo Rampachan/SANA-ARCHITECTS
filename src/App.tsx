@@ -92,10 +92,9 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas-light text-studio-black selection:bg-studio-black selection:text-canvas-light">
-      {/* Logo Animated Intro on Initial Entry */}
+      {/* Logo Animated Intro on Initial Entry (Studio360-inspired 3D video preloader) */}
       {showLoader && (
         <LogoLoader
-          durationMs={2600}
           onComplete={handleLoaderComplete}
         />
       )}
