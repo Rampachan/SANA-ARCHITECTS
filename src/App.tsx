@@ -19,30 +19,20 @@ export function App() {
     return hash || '/';
   });
 
-  // Logo Animated Loader: runs once on first session entry, never blocks repeated navigation
+  // Video Loader: displays the 3D logo animation video upon landing, then opens the site once completed
   const [showLoader, setShowLoader] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('intro') === 'true' || urlParams.get('intro') === '1') {
-        return true;
-      }
-      const hasSeenIntro = sessionStorage.getItem('sana_intro_shown');
-      if (hasSeenIntro) return false;
-    } catch {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('no-intro') === 'true' || urlParams.get('no-intro') === '1') {
       return false;
     }
     const hash = window.location.hash.replace(/^#/, '');
+    // Play video loader when landing on root/home
     return !hash || hash === '/';
   });
 
   const handleLoaderComplete = useCallback(() => {
     setShowLoader(false);
-    try {
-      sessionStorage.setItem('sana_intro_shown', 'true');
-    } catch {
-      // Ignore storage errors in private modes
-    }
   }, []);
 
 
