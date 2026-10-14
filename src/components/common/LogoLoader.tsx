@@ -9,7 +9,6 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
   onComplete,
   durationMs 
 }) => {
-  const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const onCompleteRef = useRef(onComplete);
@@ -74,20 +73,8 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
     }
   }, []);
 
-  // Track playback progress
-  const handleTimeUpdate = () => {
-    const video = videoRef.current;
-    if (!video || !video.duration || Number.isNaN(video.duration)) return;
-
-    const current = video.currentTime;
-    const duration = video.duration;
-    const pct = Math.min(100, Math.max(0, Math.floor((current / duration) * 100)));
-    setProgress(pct);
-  };
-
   // When video completes, open the page automatically
   const handleEnded = () => {
-    setProgress(100);
     dismissLoader();
   };
 
@@ -111,17 +98,17 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
       }`}
       title="Click anywhere to enter site"
     >
-      {/* Sleek Skip Button */}
+      {/* Watermark Skip Button (completely borderless, transparent watermark that does not partition the frame) */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           dismissLoader();
         }}
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-30 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-neutral-600 hover:text-studio-black bg-white/80 hover:bg-white backdrop-blur-md border border-neutral-300/80 hover:border-studio-black px-3.5 py-1.5 rounded-full shadow-xs transition-all duration-200 touch-manipulation flex items-center gap-1.5"
+        className="absolute top-4 right-4 sm:top-6 sm:right-7 z-30 font-mono text-[11px] sm:text-xs uppercase tracking-[0.25em] text-neutral-600/60 hover:text-studio-black opacity-60 hover:opacity-100 transition-all duration-300 touch-manipulation flex items-center gap-1.5 select-none bg-transparent border-0 p-2 cursor-pointer"
         title="Skip intro and open page"
       >
         <span>Skip</span>
-        <span>✕</span>
+        <span className="text-[10px] opacity-70">✕</span>
       </button>
 
       {/* Main 3D Logo Animation Video (fills the canvas seamlessly) */}
@@ -133,18 +120,9 @@ export const LogoLoader: React.FC<LogoLoaderProps> = ({
           muted
           playsInline
           preload="auto"
-          onTimeUpdate={handleTimeUpdate}
           onEnded={handleEnded}
           onError={dismissLoader}
           className="w-full h-full object-contain select-none max-w-full max-h-full"
-        />
-      </div>
-
-      {/* Hairline Progress Conduit along the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 h-[3px] bg-neutral-300/40">
-        <div
-          className="h-full bg-gradient-to-r from-accent-terracotta to-accent-amber transition-all duration-100 ease-out shadow-[0_0_8px_rgba(217,119,6,0.5)]"
-          style={{ width: `${progress}%` }}
         />
       </div>
     </div>
